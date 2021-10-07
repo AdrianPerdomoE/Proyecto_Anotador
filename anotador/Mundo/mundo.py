@@ -1,4 +1,8 @@
 import time
+
+from anotador.Mundo.Errores import LibroExiste
+
+
 class Nota:
 
     def __init__(self, nombre:str, etiqueta:str):
@@ -42,7 +46,8 @@ class Libro:
         self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
 
         self.secciones = {}
-
+    def __str__(self):
+        return (f"{self.nombre}_ _ _{self.fecha_creacion}")
 class Anotador:
 
     def __init__(self):
@@ -53,11 +58,18 @@ class Anotador:
         """Funcion para determinar si el libro existe, regresa True si se encuentra en el diccionario, False si no"""
         llaves= self.libros.keys()
         valor= nombre in llaves
-        return valor
-
+        if valor==True:
+             raise LibroExiste()
     def agregar_libro(self, nombre:str):
-        if not self.libro_existe(nombre):
-            self.libros[nombre]=Libro(nombre)
+           self.libro_existe(nombre)
+           self.libros[nombre] = Libro(nombre)
+    def borrar_libro(self,titulo):
+        self.libros.pop(titulo)
+    def modificar_libro(self,titulo,nuevo):
+        self.libro_existe(nuevo)
+        antiguo=self.libros.pop(titulo)
+        antiguo.nombre=nuevo
+        self.libros[nuevo]=antiguo
     def seccion_existe(self, nombrelibro, nombreseccion:str):
         """Funcion para determinar si la seccion existe, regresa True si se encuentra en el diccionario, False si no"""
         if self.libro_existe(nombrelibro):

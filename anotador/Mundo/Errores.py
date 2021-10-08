@@ -3,3 +3,5 @@ class ErrorAnotador(Exception):
 class LibroExiste(ErrorAnotador):
     def __init__(self):
         self.msg="Libro ya existe en el anotador"
+class SeccionExiste(ErrorAnotador):
+    pass

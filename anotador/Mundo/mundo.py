@@ -1,6 +1,6 @@
 import time
 
-from anotador.Mundo.Errores import LibroExiste
+from anotador.Mundo.Errores import LibroExiste, SeccionExiste
 
 
 class Nota:
@@ -36,7 +36,8 @@ class Seccion:
         self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
 
         self.paginas={}
-
+    def __str__(self):
+        return (f"{self.nombre}_ _ _{self.fecha_creacion}")
 class Libro:
 
     def __init__(self, nombre:str):
@@ -48,6 +49,24 @@ class Libro:
         self.secciones = {}
     def __str__(self):
         return (f"{self.nombre}_ _ _{self.fecha_creacion}")
+
+    def seccion_existe(self,nombreseccion: str):
+        """Funcion para determinar si la seccion existe, regresa True si se encuentra en el diccionario, False si no"""
+        llaves = self.secciones.keys()
+        valor = nombreseccion in llaves
+        if  valor==True:
+            raise SeccionExiste
+    def agregar_seccion(self, nombreseccion: str):
+
+        self.seccion_existe(nombreseccion)
+        self.secciones[nombreseccion] = Seccion(nombreseccion)
+    def borrar_seccion(self,nombre_seccion):
+        self.secciones.pop(nombre_seccion)
+    def modificar_seccion(self,antiguo,nuevo):
+        self.seccion_existe(nuevo)
+        pasado=self.secciones.pop(antiguo)
+        pasado.nombre=nuevo
+        self.secciones[nuevo]=pasado
 class Anotador:
 
     def __init__(self):
@@ -70,19 +89,6 @@ class Anotador:
         antiguo=self.libros.pop(titulo)
         antiguo.nombre=nuevo
         self.libros[nuevo]=antiguo
-    def seccion_existe(self, nombrelibro, nombreseccion:str):
-        """Funcion para determinar si la seccion existe, regresa True si se encuentra en el diccionario, False si no"""
-        if self.libro_existe(nombrelibro):
-            libro=self.libros[nombrelibro]
-            llaves=libro.secciones.keys()
-            valor=nombreseccion in llaves
-            return valor
-    def agregar_seccion(self, nombrelibro:str, nombreseccion:str):
-
-        if not self.seccion_existe(nombrelibro, nombreseccion):
-            libro= self.libros[nombrelibro]
-            libro.secciones[nombreseccion]=Seccion(nombreseccion)
-
     def pagina_existe(self, nombrelibro:str, nombreseccion: str, nombrepagina:str):
         """Funcion para determinar si la pagina existe, regresa True si se encuentra en el diccionario, False si no"""
         if self.seccion_existe(nombrelibro, nombreseccion):
@@ -176,6 +182,3 @@ class Anotador:
                             contador+=1
                             lista.append(notakey)
         return (contador,lista)  # se devuelve tupla con el contador y la lista de notas
-
-
-

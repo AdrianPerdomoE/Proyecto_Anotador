@@ -1,15 +1,8 @@
-import sys
-
 from PySide2.QtCore import SIGNAL
 from PySide2.QtGui import QStandardItemModel, QStandardItem
-from PySide2.QtWidgets import QMainWindow, QApplication, QDialog, QMessageBox, QWidget, QStackedWidget
+from PySide2.QtWidgets import QDialog, QMessageBox, QWidget
 from anotador.Mundo.mundo import *
 from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
-from anotador.Visual.ui_Dialogo_Crear import Ui_Dialog_Crear
-from anotador.Visual.ui_Dialogo_Crear_Libro import Ui_Dialog_Crear_Libro
-from anotador.Visual.ui_Dialogo_Modificar import Ui_DialogModificar
-from anotador.Visual.ui_Dialogo_Modificar_Libro import Ui_DialogModificarLibro
-from anotador.Visual.ui_Ventana_libro import Ui_FormSecciones
 from anotador.Visual.ui_Widgetprincipal import Ui_WidgetPrincipal
 class principal(QWidget):
     def __init__(self,parent):
@@ -29,9 +22,9 @@ class principal(QWidget):
     def actualizarSelecion(self):
         indice = self.ui.listViewLibros.selectedIndexes()[0]
         libro = self.ui.listViewLibros.model().itemFromIndex(indice).libro
-        self.parent().parent().actualizar_segunda_pantalla(libro)
+        self.parent().parent().actualizar_secciones_pantalla(libro)
     def change_widget(self):
-        self.parent().setCurrentWidget(self.parent().parent().second_screen)
+        self.parent().setCurrentWidget(self.parent().parent().secciones_screen)
     def abrir_dialogo_modificarlibro(self):
         indice = self.ui.listViewLibros.selectedIndexes()[0]
         titulo= self.ui.listViewLibros.model().itemFromIndex(indice).libro.nombre

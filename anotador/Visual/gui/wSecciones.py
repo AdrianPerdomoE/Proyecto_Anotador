@@ -5,7 +5,7 @@ from anotador.Mundo.mundo import *
 from anotador.Visual.gui.wprincipal import DialogoModificar, DialogoCrear
 from anotador.Visual.ui_Ventana_libro import Ui_FormSecciones
 
-class Secciones(QWidget):
+class WSeccion(QWidget):
     def __init__(self,parent,libro=None):
         QWidget.__init__(self,parent)
         self.ui=Ui_FormSecciones()
@@ -55,9 +55,9 @@ class Secciones(QWidget):
     def actualizarSelecion(self):
         indice = self.ui.listViewSecciones.selectedIndexes()[0]
         seccion = self.ui.listViewSecciones.model().itemFromIndex(indice).seccion
-        self.parent().parent().actualizar_tercera_pantalla(seccion)
+        self.parent().parent().actualizar_paginas_pantalla(seccion)
     def change_stage(self):
-        self.parent().setCurrentWidget(self.parent().parent().third_screen)
+        self.parent().setCurrentWidget(self.parent().parent().paginas_screen)
     def abrir_dialogo_modificar(self):
         indice = self.ui.listViewSecciones.selectedIndexes()[0]
         titulo= self.ui.listViewSecciones.model().itemFromIndex(indice).seccion.nombre

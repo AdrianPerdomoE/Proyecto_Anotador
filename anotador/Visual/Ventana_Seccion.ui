@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FormSecciones</class>
- <widget class="QWidget" name="FormSecciones">
+ <class>WidgetPaginas</class>
+ <widget class="QWidget" name="WidgetPaginas">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
-    <height>680</height>
+    <width>818</width>
+    <height>698</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,7 +96,7 @@
              <number>4</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelsecciones">
+             <widget class="QLabel" name="labelpaginas">
               <property name="font">
                <font>
                 <family>Lucida Handwriting</family>
@@ -111,7 +111,7 @@
 background-color: rgb(254, 255, 237);</string>
               </property>
               <property name="text">
-               <string>Lista de secciones</string>
+               <string>Lista de paginas</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -122,7 +122,7 @@ background-color: rgb(254, 255, 237);</string>
           </widget>
          </item>
          <item>
-          <widget class="QListView" name="listViewSecciones">
+          <widget class="QListView" name="listViewPaginas">
            <property name="styleSheet">
             <string notr="true">font: 16pt &quot;Lucida Handwriting&quot;;</string>
            </property>
@@ -171,56 +171,56 @@ background-color: rgb(254, 255, 237);</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QPushButton" name="pushButtonCrear_Seccion">
+             <widget class="QPushButton" name="pushButtonCrear_Pagina">
               <property name="text">
-               <string>Crear nueva seccion</string>
+               <string>Crear nueva pagina</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_Ver_seccion">
+             <widget class="QPushButton" name="pushButton_Ver_Pagina">
               <property name="enabled">
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Ver seccion</string>
+               <string>Ver pagina</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_Modificar_seccion">
+             <widget class="QPushButton" name="pushButton_Modificar_Pagina">
               <property name="enabled">
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Modificar seccion</string>
+               <string>Modificar pagina</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_Archivar_seccion">
+             <widget class="QPushButton" name="pushButton_Archivar_Pagina">
               <property name="enabled">
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Archivar seccion</string>
+               <string>Archivar pagina</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_Borrar_seccion">
+             <widget class="QPushButton" name="pushButton_Borrar_Pagina">
               <property name="enabled">
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Borrar seccion</string>
+               <string>Borrar pagina</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonRegresar">
               <property name="text">
-               <string>Home</string>
+               <string>Atras</string>
               </property>
              </widget>
             </item>

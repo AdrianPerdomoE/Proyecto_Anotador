@@ -5,3 +5,7 @@ class LibroExiste(ErrorAnotador):
         self.msg="Libro ya existe en el anotador"
 class SeccionExiste(ErrorAnotador):
     pass
+class PaginaExiste(ErrorAnotador):
+    pass
+class NotaExiste(ErrorAnotador):
+    pass

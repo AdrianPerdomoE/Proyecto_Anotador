@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Ventana_libroifkiGX.ui'
+## Form generated from reading UI file 'Ventana_SeccionCykFHN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -13,16 +13,16 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 
-class Ui_FormSecciones(object):
-    def setupUi(self, FormSecciones):
-        if not FormSecciones.objectName():
-            FormSecciones.setObjectName(u"FormSecciones")
-        FormSecciones.resize(819, 680)
-        self.verticalLayout = QVBoxLayout(FormSecciones)
+class Ui_WidgetPaginas(object):
+    def setupUi(self, WidgetPaginas):
+        if not WidgetPaginas.objectName():
+            WidgetPaginas.setObjectName(u"WidgetPaginas")
+        WidgetPaginas.resize(818, 698)
+        self.verticalLayout = QVBoxLayout(WidgetPaginas)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.frame = QFrame(FormSecciones)
+        self.frame = QFrame(WidgetPaginas)
         self.frame.setObjectName(u"frame")
         self.frame.setMinimumSize(QSize(800, 680))
         self.frame.setStyleSheet(u"background-color: rgb(0, 0, 127);")
@@ -48,31 +48,31 @@ class Ui_FormSecciones(object):
         self.verticalLayout_5.setSpacing(5)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(6, 7, 5, 4)
-        self.labelsecciones = QLabel(self.frame_5)
-        self.labelsecciones.setObjectName(u"labelsecciones")
+        self.labelpaginas = QLabel(self.frame_5)
+        self.labelpaginas.setObjectName(u"labelpaginas")
         font = QFont()
         font.setFamily(u"Lucida Handwriting")
         font.setPointSize(20)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
-        self.labelsecciones.setFont(font)
-        self.labelsecciones.setStyleSheet(u"font: 20pt \"Lucida Handwriting\";\n"
+        self.labelpaginas.setFont(font)
+        self.labelpaginas.setStyleSheet(u"font: 20pt \"Lucida Handwriting\";\n"
 "background-color: rgb(254, 255, 237);")
-        self.labelsecciones.setAlignment(Qt.AlignCenter)
+        self.labelpaginas.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_5.addWidget(self.labelsecciones)
+        self.verticalLayout_5.addWidget(self.labelpaginas)
 
 
         self.verticalLayout_2.addWidget(self.frame_5)
 
-        self.listViewSecciones = QListView(self.frame_2)
-        self.listViewSecciones.setObjectName(u"listViewSecciones")
-        self.listViewSecciones.setStyleSheet(u"font: 16pt \"Lucida Handwriting\";")
-        self.listViewSecciones.setViewMode(QListView.IconMode)
-        self.listViewSecciones.setItemAlignment(Qt.AlignCenter)
+        self.listViewPaginas = QListView(self.frame_2)
+        self.listViewPaginas.setObjectName(u"listViewPaginas")
+        self.listViewPaginas.setStyleSheet(u"font: 16pt \"Lucida Handwriting\";")
+        self.listViewPaginas.setViewMode(QListView.IconMode)
+        self.listViewPaginas.setItemAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.listViewSecciones)
+        self.verticalLayout_2.addWidget(self.listViewPaginas)
 
 
         self.horizontalLayout.addWidget(self.frame_2)
@@ -92,34 +92,34 @@ class Ui_FormSecciones(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_4)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.pushButtonCrear_Seccion = QPushButton(self.frame_4)
-        self.pushButtonCrear_Seccion.setObjectName(u"pushButtonCrear_Seccion")
+        self.pushButtonCrear_Pagina = QPushButton(self.frame_4)
+        self.pushButtonCrear_Pagina.setObjectName(u"pushButtonCrear_Pagina")
 
-        self.verticalLayout_4.addWidget(self.pushButtonCrear_Seccion)
+        self.verticalLayout_4.addWidget(self.pushButtonCrear_Pagina)
 
-        self.pushButton_Ver_seccion = QPushButton(self.frame_4)
-        self.pushButton_Ver_seccion.setObjectName(u"pushButton_Ver_seccion")
-        self.pushButton_Ver_seccion.setEnabled(False)
+        self.pushButton_Ver_Pagina = QPushButton(self.frame_4)
+        self.pushButton_Ver_Pagina.setObjectName(u"pushButton_Ver_Pagina")
+        self.pushButton_Ver_Pagina.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Ver_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Ver_Pagina)
 
-        self.pushButton_Modificar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Modificar_seccion.setObjectName(u"pushButton_Modificar_seccion")
-        self.pushButton_Modificar_seccion.setEnabled(False)
+        self.pushButton_Modificar_Pagina = QPushButton(self.frame_4)
+        self.pushButton_Modificar_Pagina.setObjectName(u"pushButton_Modificar_Pagina")
+        self.pushButton_Modificar_Pagina.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Modificar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Modificar_Pagina)
 
-        self.pushButton_Archivar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Archivar_seccion.setObjectName(u"pushButton_Archivar_seccion")
-        self.pushButton_Archivar_seccion.setEnabled(False)
+        self.pushButton_Archivar_Pagina = QPushButton(self.frame_4)
+        self.pushButton_Archivar_Pagina.setObjectName(u"pushButton_Archivar_Pagina")
+        self.pushButton_Archivar_Pagina.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Archivar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Archivar_Pagina)
 
-        self.pushButton_Borrar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Borrar_seccion.setObjectName(u"pushButton_Borrar_seccion")
-        self.pushButton_Borrar_seccion.setEnabled(False)
+        self.pushButton_Borrar_Pagina = QPushButton(self.frame_4)
+        self.pushButton_Borrar_Pagina.setObjectName(u"pushButton_Borrar_Pagina")
+        self.pushButton_Borrar_Pagina.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Borrar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Borrar_Pagina)
 
         self.pushButtonRegresar = QPushButton(self.frame_4)
         self.pushButtonRegresar.setObjectName(u"pushButtonRegresar")
@@ -136,19 +136,19 @@ class Ui_FormSecciones(object):
         self.verticalLayout.addWidget(self.frame)
 
 
-        self.retranslateUi(FormSecciones)
+        self.retranslateUi(WidgetPaginas)
 
-        QMetaObject.connectSlotsByName(FormSecciones)
+        QMetaObject.connectSlotsByName(WidgetPaginas)
     # setupUi
 
-    def retranslateUi(self, FormSecciones):
-        FormSecciones.setWindowTitle(QCoreApplication.translate("FormSecciones", u"Form", None))
-        self.labelsecciones.setText(QCoreApplication.translate("FormSecciones", u"Lista de secciones", None))
-        self.pushButtonCrear_Seccion.setText(QCoreApplication.translate("FormSecciones", u"Crear nueva seccion", None))
-        self.pushButton_Ver_seccion.setText(QCoreApplication.translate("FormSecciones", u"Ver seccion", None))
-        self.pushButton_Modificar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Modificar seccion", None))
-        self.pushButton_Archivar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Archivar seccion", None))
-        self.pushButton_Borrar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Borrar seccion", None))
-        self.pushButtonRegresar.setText(QCoreApplication.translate("FormSecciones", u"Home", None))
+    def retranslateUi(self, WidgetPaginas):
+        WidgetPaginas.setWindowTitle(QCoreApplication.translate("WidgetPaginas", u"Form", None))
+        self.labelpaginas.setText(QCoreApplication.translate("WidgetPaginas", u"Lista de paginas", None))
+        self.pushButtonCrear_Pagina.setText(QCoreApplication.translate("WidgetPaginas", u"Crear nueva pagina", None))
+        self.pushButton_Ver_Pagina.setText(QCoreApplication.translate("WidgetPaginas", u"Ver pagina", None))
+        self.pushButton_Modificar_Pagina.setText(QCoreApplication.translate("WidgetPaginas", u"Modificar pagina", None))
+        self.pushButton_Archivar_Pagina.setText(QCoreApplication.translate("WidgetPaginas", u"Archivar pagina", None))
+        self.pushButton_Borrar_Pagina.setText(QCoreApplication.translate("WidgetPaginas", u"Borrar pagina", None))
+        self.pushButtonRegresar.setText(QCoreApplication.translate("WidgetPaginas", u"Atras", None))
     # retranslateUi
 

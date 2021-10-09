@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Ventana_libroifkiGX.ui'
+## Form generated from reading UI file 'Ventana_paginavSsBEV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -13,16 +13,16 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 
-class Ui_FormSecciones(object):
-    def setupUi(self, FormSecciones):
-        if not FormSecciones.objectName():
-            FormSecciones.setObjectName(u"FormSecciones")
-        FormSecciones.resize(819, 680)
-        self.verticalLayout = QVBoxLayout(FormSecciones)
+class Ui_WNotas(object):
+    def setupUi(self, WNotas):
+        if not WNotas.objectName():
+            WNotas.setObjectName(u"WNotas")
+        WNotas.resize(818, 698)
+        self.verticalLayout = QVBoxLayout(WNotas)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.frame = QFrame(FormSecciones)
+        self.frame = QFrame(WNotas)
         self.frame.setObjectName(u"frame")
         self.frame.setMinimumSize(QSize(800, 680))
         self.frame.setStyleSheet(u"background-color: rgb(0, 0, 127);")
@@ -48,31 +48,31 @@ class Ui_FormSecciones(object):
         self.verticalLayout_5.setSpacing(5)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(6, 7, 5, 4)
-        self.labelsecciones = QLabel(self.frame_5)
-        self.labelsecciones.setObjectName(u"labelsecciones")
+        self.labelNotas = QLabel(self.frame_5)
+        self.labelNotas.setObjectName(u"labelNotas")
         font = QFont()
         font.setFamily(u"Lucida Handwriting")
         font.setPointSize(20)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
-        self.labelsecciones.setFont(font)
-        self.labelsecciones.setStyleSheet(u"font: 20pt \"Lucida Handwriting\";\n"
+        self.labelNotas.setFont(font)
+        self.labelNotas.setStyleSheet(u"font: 20pt \"Lucida Handwriting\";\n"
 "background-color: rgb(254, 255, 237);")
-        self.labelsecciones.setAlignment(Qt.AlignCenter)
+        self.labelNotas.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_5.addWidget(self.labelsecciones)
+        self.verticalLayout_5.addWidget(self.labelNotas)
 
 
         self.verticalLayout_2.addWidget(self.frame_5)
 
-        self.listViewSecciones = QListView(self.frame_2)
-        self.listViewSecciones.setObjectName(u"listViewSecciones")
-        self.listViewSecciones.setStyleSheet(u"font: 16pt \"Lucida Handwriting\";")
-        self.listViewSecciones.setViewMode(QListView.IconMode)
-        self.listViewSecciones.setItemAlignment(Qt.AlignCenter)
+        self.listViewNotas = QListView(self.frame_2)
+        self.listViewNotas.setObjectName(u"listViewNotas")
+        self.listViewNotas.setStyleSheet(u"font: 16pt \"Lucida Handwriting\";")
+        self.listViewNotas.setViewMode(QListView.IconMode)
+        self.listViewNotas.setItemAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.listViewSecciones)
+        self.verticalLayout_2.addWidget(self.listViewNotas)
 
 
         self.horizontalLayout.addWidget(self.frame_2)
@@ -92,34 +92,34 @@ class Ui_FormSecciones(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_4)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.pushButtonCrear_Seccion = QPushButton(self.frame_4)
-        self.pushButtonCrear_Seccion.setObjectName(u"pushButtonCrear_Seccion")
+        self.pushButtonCrear_Nota = QPushButton(self.frame_4)
+        self.pushButtonCrear_Nota.setObjectName(u"pushButtonCrear_Nota")
 
-        self.verticalLayout_4.addWidget(self.pushButtonCrear_Seccion)
+        self.verticalLayout_4.addWidget(self.pushButtonCrear_Nota)
 
-        self.pushButton_Ver_seccion = QPushButton(self.frame_4)
-        self.pushButton_Ver_seccion.setObjectName(u"pushButton_Ver_seccion")
-        self.pushButton_Ver_seccion.setEnabled(False)
+        self.pushButton_Ver_Nota = QPushButton(self.frame_4)
+        self.pushButton_Ver_Nota.setObjectName(u"pushButton_Ver_Nota")
+        self.pushButton_Ver_Nota.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Ver_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Ver_Nota)
 
-        self.pushButton_Modificar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Modificar_seccion.setObjectName(u"pushButton_Modificar_seccion")
-        self.pushButton_Modificar_seccion.setEnabled(False)
+        self.pushButton_Modificar_Nota = QPushButton(self.frame_4)
+        self.pushButton_Modificar_Nota.setObjectName(u"pushButton_Modificar_Nota")
+        self.pushButton_Modificar_Nota.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Modificar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Modificar_Nota)
 
-        self.pushButton_Archivar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Archivar_seccion.setObjectName(u"pushButton_Archivar_seccion")
-        self.pushButton_Archivar_seccion.setEnabled(False)
+        self.pushButton_Archivar_Nota = QPushButton(self.frame_4)
+        self.pushButton_Archivar_Nota.setObjectName(u"pushButton_Archivar_Nota")
+        self.pushButton_Archivar_Nota.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Archivar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Archivar_Nota)
 
-        self.pushButton_Borrar_seccion = QPushButton(self.frame_4)
-        self.pushButton_Borrar_seccion.setObjectName(u"pushButton_Borrar_seccion")
-        self.pushButton_Borrar_seccion.setEnabled(False)
+        self.pushButton_Borrar_Nota = QPushButton(self.frame_4)
+        self.pushButton_Borrar_Nota.setObjectName(u"pushButton_Borrar_Nota")
+        self.pushButton_Borrar_Nota.setEnabled(False)
 
-        self.verticalLayout_4.addWidget(self.pushButton_Borrar_seccion)
+        self.verticalLayout_4.addWidget(self.pushButton_Borrar_Nota)
 
         self.pushButtonRegresar = QPushButton(self.frame_4)
         self.pushButtonRegresar.setObjectName(u"pushButtonRegresar")
@@ -136,19 +136,19 @@ class Ui_FormSecciones(object):
         self.verticalLayout.addWidget(self.frame)
 
 
-        self.retranslateUi(FormSecciones)
+        self.retranslateUi(WNotas)
 
-        QMetaObject.connectSlotsByName(FormSecciones)
+        QMetaObject.connectSlotsByName(WNotas)
     # setupUi
 
-    def retranslateUi(self, FormSecciones):
-        FormSecciones.setWindowTitle(QCoreApplication.translate("FormSecciones", u"Form", None))
-        self.labelsecciones.setText(QCoreApplication.translate("FormSecciones", u"Lista de secciones", None))
-        self.pushButtonCrear_Seccion.setText(QCoreApplication.translate("FormSecciones", u"Crear nueva seccion", None))
-        self.pushButton_Ver_seccion.setText(QCoreApplication.translate("FormSecciones", u"Ver seccion", None))
-        self.pushButton_Modificar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Modificar seccion", None))
-        self.pushButton_Archivar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Archivar seccion", None))
-        self.pushButton_Borrar_seccion.setText(QCoreApplication.translate("FormSecciones", u"Borrar seccion", None))
-        self.pushButtonRegresar.setText(QCoreApplication.translate("FormSecciones", u"Home", None))
+    def retranslateUi(self, WNotas):
+        WNotas.setWindowTitle(QCoreApplication.translate("WNotas", u"Form", None))
+        self.labelNotas.setText(QCoreApplication.translate("WNotas", u"Lista de notas", None))
+        self.pushButtonCrear_Nota.setText(QCoreApplication.translate("WNotas", u"Crear nueva nota", None))
+        self.pushButton_Ver_Nota.setText(QCoreApplication.translate("WNotas", u"Ver nota", None))
+        self.pushButton_Modificar_Nota.setText(QCoreApplication.translate("WNotas", u"Modificar nota", None))
+        self.pushButton_Archivar_Nota.setText(QCoreApplication.translate("WNotas", u"Archivar nota", None))
+        self.pushButton_Borrar_Nota.setText(QCoreApplication.translate("WNotas", u"Borrar nota", None))
+        self.pushButtonRegresar.setText(QCoreApplication.translate("WNotas", u"Atras", None))
     # retranslateUi
 

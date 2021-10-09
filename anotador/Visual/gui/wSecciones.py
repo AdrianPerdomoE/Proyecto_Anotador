@@ -13,22 +13,22 @@ class WSeccion(QWidget):
         self._configurar()
         self.libro=libro
     def _configurar(self):
-        self.ui.listViewSecciones.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.change_widget)
-        self.ui.pushButtonCrear_Seccion.clicked.connect(self.abrirdialogocrear)
-        self.ui.listViewSecciones.selectionModel().selectionChanged.connect(self.selecionar_seccion)
-        self.ui.pushButton_Borrar_seccion.clicked.connect(self.borrarseccion)
-        self.ui.pushButton_Modificar_seccion.clicked.connect(self.abrir_dialogo_modificar)
-        self.ui.pushButton_Archivar_seccion.clicked.connect(self.borrarseccion)
-        self.connect(self.ui.pushButton_Ver_seccion, SIGNAL("clicked()"), self.change_stage)
+        self.ui.listViewSecciones_2.setModel(QStandardItemModel())
+        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.change_widget)
+        self.ui.pushButtonCrear_Seccion_2.clicked.connect(self.abrirdialogocrear)
+        self.ui.listViewSecciones_2.selectionModel().selectionChanged.connect(self.selecionar_seccion)
+        self.ui.pushButton_Borrar_seccion_2.clicked.connect(self.borrarseccion)
+        self.ui.pushButton_Modificar_seccion_2.clicked.connect(self.abrir_dialogo_modificar)
+        self.ui.pushButton_Archivar_seccion_2.clicked.connect(self.borrarseccion)
+        self.connect(self.ui.pushButton_Ver_seccion_2, SIGNAL("clicked()"), self.change_stage)
     def actualizar_listasecciones(self):
-        self.ui.listViewSecciones.model().clear()
+        self.ui.listViewSecciones_2.model().clear()
         secciones=self.libro.secciones.values()
         for seccion in secciones:
             item = QStandardItem(str(seccion))
             item.setEditable(False)
             item.seccion = seccion
-            self.ui.listViewSecciones.model().appendRow(item)
+            self.ui.listViewSecciones_2.model().appendRow(item)
     def abrirdialogocrear(self):
         dialogo = DialogoCrear(self)
         resp = dialogo.exec_()
@@ -48,19 +48,19 @@ class WSeccion(QWidget):
         item = QStandardItem(str(seccion))
         item.setEditable(False)
         item.seccion=seccion
-        self.ui.listViewSecciones.model().appendRow(item)
+        self.ui.listViewSecciones_2.model().appendRow(item)
     def change_widget(self):
         self.parent().setCurrentWidget(
             self.parent().parent().start_screen)
     def actualizarSelecion(self):
-        indice = self.ui.listViewSecciones.selectedIndexes()[0]
-        seccion = self.ui.listViewSecciones.model().itemFromIndex(indice).seccion
+        indice = self.ui.listViewSecciones_2.selectedIndexes()[0]
+        seccion = self.ui.listViewSecciones_2.model().itemFromIndex(indice).seccion
         self.parent().parent().actualizar_paginas_pantalla(seccion)
     def change_stage(self):
         self.parent().setCurrentWidget(self.parent().parent().paginas_screen)
     def abrir_dialogo_modificar(self):
-        indice = self.ui.listViewSecciones.selectedIndexes()[0]
-        titulo= self.ui.listViewSecciones.model().itemFromIndex(indice).seccion.nombre
+        indice = self.ui.listViewSecciones_2.selectedIndexes()[0]
+        titulo= self.ui.listViewSecciones_2.model().itemFromIndex(indice).seccion.nombre
         dialog=DialogoModificar(titulo)
         resp=dialog.exec_()
         new=dialog.ui.lineEditTituloNuevo.text()
@@ -76,8 +76,8 @@ class WSeccion(QWidget):
                 msg_box.setStandardButtons(QMessageBox.Ok)
                 msg_box.exec_()
     def borrarseccion(self):
-        indice=self.ui.listViewSecciones.selectedIndexes()[0]
-        titulo=self.ui.listViewSecciones.model().itemFromIndex(indice).seccion.nombre
+        indice=self.ui.listViewSecciones_2.selectedIndexes()[0]
+        titulo=self.ui.listViewSecciones_2.model().itemFromIndex(indice).seccion.nombre
         self.libro.borrar_seccion(titulo)
         self.actualizar_listasecciones()
         if len(self.libro.secciones)==0:
@@ -91,7 +91,7 @@ class WSeccion(QWidget):
             self.actualizar_botones_secciones(False)
 
     def actualizar_botones_secciones(self, boolean:bool):
-        self.ui.pushButton_Archivar_seccion.setEnabled(boolean)
-        self.ui.pushButton_Ver_seccion.setEnabled(boolean)
-        self.ui.pushButton_Borrar_seccion.setEnabled(boolean)
-        self.ui.pushButton_Modificar_seccion.setEnabled(boolean)
+        self.ui.pushButton_Archivar_seccion_2.setEnabled(boolean)
+        self.ui.pushButton_Ver_seccion_2.setEnabled(boolean)
+        self.ui.pushButton_Borrar_seccion_2.setEnabled(boolean)
+        self.ui.pushButton_Modificar_seccion_2.setEnabled(boolean)

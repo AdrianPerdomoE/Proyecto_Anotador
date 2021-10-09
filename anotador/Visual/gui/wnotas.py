@@ -15,23 +15,23 @@ class WNota(QWidget):
         self.pagina =pagina
 
     def _configurar(self):
-        self.ui.listViewNotas.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.change_widget)
-        self.ui.pushButtonCrear_Nota.clicked.connect(self.abrirdialogocrear)
-        self.ui.listViewNotas.selectionModel().selectionChanged.connect(self.selecionar_nota)
-        self.ui.pushButton_Borrar_Nota.clicked.connect(self.borrarnota)
-        self.ui.pushButton_Modificar_Nota.clicked.connect(self.abrir_dialogo_modificar)
-        self.ui.pushButton_Archivar_Nota.clicked.connect(self.borrarnota)
+        self.ui.listViewNotas_2.setModel(QStandardItemModel())
+        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.change_widget)
+        self.ui.pushButtonCrear_Nota_2.clicked.connect(self.abrirdialogocrear)
+        self.ui.listViewNotas_2.selectionModel().selectionChanged.connect(self.selecionar_nota)
+        self.ui.pushButton_Borrar_Nota_2.clicked.connect(self.borrarnota)
+        self.ui.pushButton_Modificar_Nota_2.clicked.connect(self.abrir_dialogo_modificar)
+        self.ui.pushButton_Archivar_Nota_2.clicked.connect(self.borrarnota)
         #self.connect(self.ui.pushButton_Ver_Nota, SIGNAL("clicked()"), self.change_stage)
 
     def actualizar_listanotas(self):
-        self.ui.listViewNotas.model().clear()
+        self.ui.listViewNotas_2.model().clear()
         notas = self.pagina.notas.values()#Buscar error
         for nota in notas:
             item = QStandardItem(str(nota))
             item.setEditable(False)
             item.nota = nota
-            self.ui.listViewNotas.model().appendRow(item)
+            self.ui.listViewNotas_2.model().appendRow(item)
 
     def abrirdialogocrear(self):
         dialogo = DialogoCrear(self)
@@ -53,22 +53,22 @@ class WNota(QWidget):
         item = QStandardItem(str(nota))
         item.setEditable(False)
         item.nota =nota
-        self.ui.listViewNotas.model().appendRow(item)
+        self.ui.listViewNotas_2.model().appendRow(item)
 
     def change_widget(self):
         self.parent().setCurrentWidget(
             self.parent().parent().paginas_screen)
 
     def actualizarSelecion(self):
-        indice = self.ui.listViewNotas.selectedIndexes()[0]
-        nota = self.ui.listViewNotas.model().itemFromIndex(indice).nota
+        indice = self.ui.listViewNotas_2.selectedIndexes()[0]
+        nota = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota
         self.parent().parent().actualizar_notas_pantalla(nota)
 
    #def change_stage(self):
     #    self.parent().setCurrentWidget(self.parent().parent().nota_screen)
     def abrir_dialogo_modificar(self):
-        indice = self.ui.listViewNotas.selectedIndexes()[0]
-        titulo = self.ui.listViewNotas.model().itemFromIndex(indice).nota.nombre
+        indice = self.ui.listViewNotas_2.selectedIndexes()[0]
+        titulo = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota.nombre
         dialog = DialogoModificar(titulo)
         resp = dialog.exec_()
         new = dialog.ui.lineEditTituloNuevo.text()
@@ -85,8 +85,8 @@ class WNota(QWidget):
                 msg_box.exec_()
 
     def borrarnota(self):
-        indice = self.ui.listViewNotas.selectedIndexes()[0]
-        titulo = self.ui.listViewNotas.model().itemFromIndex(indice).pagina.nombre
+        indice = self.ui.listViewNotas_2.selectedIndexes()[0]
+        titulo = self.ui.listViewNotas_2.model().itemFromIndex(indice).pagina.nombre
         self.seccion.borrar_pagina(titulo)
         self.actualizar_listanotas()
         if len(self.pagina.notas) == 0:
@@ -101,7 +101,7 @@ class WNota(QWidget):
             self.actualizar_botones_notas(False)
 
     def actualizar_botones_notas(self, boolean: bool):
-        self.ui.pushButton_Archivar_Nota.setEnabled(boolean)
-        self.ui.pushButton_Ver_Nota.setEnabled(boolean)
-        self.ui.pushButton_Borrar_Nota.setEnabled(boolean)
-        self.ui.pushButton_Modificar_Nota.setEnabled(boolean)
+        self.ui.pushButton_Archivar_Nota_2.setEnabled(boolean)
+        self.ui.pushButton_Ver_Nota_2.setEnabled(boolean)
+        self.ui.pushButton_Borrar_Nota_2.setEnabled(boolean)
+        self.ui.pushButton_Modificar_Nota_2.setEnabled(boolean)

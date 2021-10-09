@@ -14,7 +14,7 @@ class ventana(QMainWindow):
         self.anotador=Anotador()
         self.central_widget = QStackedWidget()
         self.setCentralWidget(self.central_widget)
-        self.start_screen = principal(self)
+        self.start_screen =principal(self)
         self.central_widget.addWidget(self.start_screen)
         self.secciones_screen = WSeccion(self)
         self.paginas_screen= WPagina(self)
@@ -45,5 +45,7 @@ class ventana(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle('Fusion')
     window = ventana()
+    window.setMinimumSize(1020,600)
     sys.exit(app.exec_())

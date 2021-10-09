@@ -3,6 +3,7 @@ from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtWidgets import QDialog, QMessageBox, QWidget
 from anotador.Mundo.mundo import *
 from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
+from anotador.Visual.ui_Libro_layout import Ui_libro_layout
 from anotador.Visual.ui_Widgetprincipal import Ui_WidgetPrincipal
 class principal(QWidget):
     def __init__(self,parent):
@@ -92,4 +93,3 @@ class principal(QWidget):
                 msg_box.setText(f"Error Libro con titulo {titulo} ya existe")
                 msg_box.setStandardButtons(QMessageBox.Ok)
                 msg_box.exec_()
-

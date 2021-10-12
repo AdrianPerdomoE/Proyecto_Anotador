@@ -9,7 +9,7 @@ class DialogoModificar(QDialog):
         QDialog.__init__(self, parent)
         self.ui =Ui_DialogModificar()
         self.ui.setupUi(self)
-        self.ui.lineEditTituloAntiguo.setText(titulo)
+        self.ui.lineEditTitulo.setText(titulo)
     def accept(self) -> None:
         if self.ui.lineEditTituloNuevo.text() != "":
             super().accept()

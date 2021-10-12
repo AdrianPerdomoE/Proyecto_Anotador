@@ -7,7 +7,7 @@ from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
 from anotador.Visual.ui_Ventana_Seccion import Ui_WidgetPaginas
 
 
-class WPagina(QWidget):
+class WSeccion(QWidget):
     def __init__(self,parent,seccion=None):
         QWidget.__init__(self,parent)
         self.ui =Ui_WidgetPaginas()

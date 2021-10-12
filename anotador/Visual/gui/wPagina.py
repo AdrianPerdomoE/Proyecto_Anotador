@@ -6,13 +6,13 @@ from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
 from anotador.Visual.ui_Ventana_pagina import Ui_WNotas
 
 
-class WNota(QWidget):
+class WPagina(QWidget):
     def __init__(self,parent,pagina=None):
         QWidget.__init__(self,parent)
         self.ui =Ui_WNotas()
         self.ui.setupUi(self)
         self._configurar()
-        self.pagina =pagina
+        self.pagina=pagina
 
     def _configurar(self):
         self.ui.listViewNotas_2.setModel(QStandardItemModel())
@@ -22,11 +22,11 @@ class WNota(QWidget):
         self.ui.pushButton_Borrar_Nota_2.clicked.connect(self.borrarnota)
         self.ui.pushButton_Modificar_Nota_2.clicked.connect(self.abrir_dialogo_modificar)
         self.ui.pushButton_Archivar_Nota_2.clicked.connect(self.borrarnota)
-        #self.connect(self.ui.pushButton_Ver_Nota, SIGNAL("clicked()"), self.change_stage)
+        self.connect(self.ui.pushButton_Ver_Nota_2, SIGNAL("clicked()"), self.change_stage)
 
     def actualizar_listanotas(self):
         self.ui.listViewNotas_2.model().clear()
-        notas = self.pagina.notas.values()#Buscar error
+        notas = self.pagina.notas.values()
         for nota in notas:
             item = QStandardItem(str(nota))
             item.setEditable(False)
@@ -41,7 +41,11 @@ class WNota(QWidget):
             try:
                 self.pagina.agregar_nota(titulo)
                 self.ingresar_listanotas(self.pagina.notas[titulo])
-            except PaginaExiste:
+                self.parent().parent().actualizar_botones_busquedas(True)
+                self.parent().parent().actualizar_nota_actual(self.pagina.notas[titulo])
+                self.change_stage()
+
+            except NotaExiste:
                 msg_box = QMessageBox(self)
                 msg_box.setWindowTitle("ERROR EXISTENCIAL")
                 msg_box.setIcon(QMessageBox.Critical)
@@ -62,10 +66,10 @@ class WNota(QWidget):
     def actualizarSelecion(self):
         indice = self.ui.listViewNotas_2.selectedIndexes()[0]
         nota = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota
-        self.parent().parent().actualizar_notas_pantalla(nota)
+        self.parent().parent().actualizar_nota_actual(nota)
 
-   #def change_stage(self):
-    #    self.parent().setCurrentWidget(self.parent().parent().nota_screen)
+    def change_stage(self):
+        self.parent().setCurrentWidget(self.parent().parent().nota_actual_screen)
     def abrir_dialogo_modificar(self):
         indice = self.ui.listViewNotas_2.selectedIndexes()[0]
         titulo = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota.nombre
@@ -74,7 +78,7 @@ class WNota(QWidget):
         new = dialog.ui.lineEditTituloNuevo.text()
         if resp == QDialog.Accepted:
             try:
-                self.seccion.modificar_pagina(titulo, new)
+                self.pagina.modificar_nombre_nota(titulo, new)
                 self.actualizar_listanotas()
             except NotaExiste:
                 msg_box = QMessageBox(self)
@@ -86,11 +90,12 @@ class WNota(QWidget):
 
     def borrarnota(self):
         indice = self.ui.listViewNotas_2.selectedIndexes()[0]
-        titulo = self.ui.listViewNotas_2.model().itemFromIndex(indice).pagina.nombre
-        self.seccion.borrar_pagina(titulo)
+        titulo = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota.nombre
+        self.pagina.borrar_nota(titulo)
         self.actualizar_listanotas()
         if len(self.pagina.notas) == 0:
             self.actualizar_botones_notas(False)
+            self.parent().parent().actualizar_botones_busquedas(False)
 
     def selecionar_nota(self, selected, deselected):
         indices = selected.indexes()

@@ -5,7 +5,7 @@ from anotador.Mundo.mundo import *
 from anotador.Visual.gui.wprincipal import DialogoModificar, DialogoCrear
 from anotador.Visual.ui_Ventana_libro import Ui_FormSecciones
 
-class WSeccion(QWidget):
+class WLibro(QWidget):
     def __init__(self,parent,libro=None):
         QWidget.__init__(self,parent)
         self.ui=Ui_FormSecciones()

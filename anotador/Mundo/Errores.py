@@ -9,3 +9,5 @@ class PaginaExiste(ErrorAnotador):
     pass
 class NotaExiste(ErrorAnotador):
     pass
+class EtiquetaExiste(ErrorAnotador):
+    pass

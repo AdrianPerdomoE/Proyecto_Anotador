@@ -1,6 +1,6 @@
 import time
 
-from anotador.Mundo.Errores import LibroExiste, SeccionExiste, PaginaExiste, NotaExiste
+from anotador.Mundo.Errores import LibroExiste, SeccionExiste, PaginaExiste, NotaExiste, EtiquetaExiste
 
 
 class Nota:
@@ -20,7 +20,23 @@ class Nota:
             self.etiquetas.append(etiqueta)
         self.destacado = False
     def __str__(self):
+        if self.destacado:
+            return (f"★ {self.nombre}_ _ _{self.fecha_creacion}:  {self.hora_creacion}")
         return (f"{self.nombre}_ _ _{self.fecha_creacion}:  {self.hora_creacion}")
+
+    def etiqueta_existe(self, etiqueta):
+        """Funcion para determinar si la etiqueta existe, regresa True si se encuentra en el diccionario, False si no"""
+        valor=etiqueta in self.etiquetas
+        if  valor:
+            raise EtiquetaExiste
+    def agregar_etiqueta(self,  etiqueta:str):
+        self.etiqueta_existe(etiqueta)
+        self.etiquetas.append(etiqueta)
+    def eliminiar_etiqueta(self,  etiqueta:str):
+        indice=self.etiquetas.index(etiqueta)
+        self.etiquetas.pop(indice)
+    def destacar_nota(self,Boolean:bool):
+        self.destacado=Boolean
 class Pagina:
 
     def __init__(self, nombre:str):
@@ -135,31 +151,6 @@ class Anotador:
         antiguo=self.libros.pop(titulo)
         antiguo.nombre=nuevo
         self.libros[nuevo]=antiguo
-
-    def etiqueta_existe(self, nombrelibro:str, nombreseccion: str, nombrepagina:str, nombrenota:str, etiqueta):
-        """Funcion para determinar si la etiqueta existe, regresa True si se encuentra en el diccionario, False si no"""
-        if self.nota_existe(nombrelibro, nombreseccion, nombrepagina, nombrenota):
-            libro = self.libros[nombrelibro]
-            seccion = libro.secciones[nombreseccion]
-            pagina=seccion.paginas[nombrepagina]
-            nota=pagina.notas[nombrenota]
-            valor=etiqueta in nota.etiquetas
-            return  valor
-        pass
-    def agregar_etiqueta(self, nombrelibro:str, nombreseccion: str, nombrepagina:str, nombrenota:str, etiqueta:str):
-        if not self.etiqueta_existe(nombrelibro, nombreseccion, nombrepagina, nombrenota, etiqueta):
-            libro = self.libros[nombrelibro]
-            seccion=libro.secciones[nombreseccion]
-            pagina=seccion.paginas[nombrepagina]
-            nota=pagina.notas[nombrenota]
-            nota.etiquetas.append(etiqueta)
-    def destacar_nota(self, nombrelibro:str, nombreseccion: str, nombrepagina:str, nombrenota:str):
-        if self.nota_existe(nombrelibro, nombreseccion, nombrepagina, nombrenota):
-            libro = self.libros[nombrelibro]
-            seccion = libro.secciones[nombreseccion]
-            pagina = seccion.paginas[nombrepagina]
-            nota = pagina.notas[nombrenota]
-            nota.destacado=True
     def listadestacados(self):
         """Funcion que guarda las llaves de las notas destacadas"""
         destacados= []

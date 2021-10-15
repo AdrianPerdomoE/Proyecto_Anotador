@@ -1,14 +1,13 @@
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtWidgets import QWidget, QMessageBox
-
 from anotador.Mundo.Errores import NoElementFound
-from anotador.Visual.ui_Wbuscador import Ui_WBuscador
+from anotador.Visual.ui_WNotas_Destacadas import Ui_WNotas_Destacadas
 
 
-class WBuscador(QWidget):
+class WNotas_Destacadas(QWidget):
     def __init__(self,parent):
         QWidget.__init__(self,parent)
-        self.ui = Ui_WBuscador()
+        self.ui = Ui_WNotas_Destacadas()
         self.ui.setupUi(self)
         self._configurar()
         self.anotador = parent.anotador
@@ -17,27 +16,26 @@ class WBuscador(QWidget):
         self.ui.listViewNotas.selectionModel().selectionChanged.connect(self.selecionar)
         self.ui.pushButton_Ver_Nota.clicked.connect(self.ver_nota)
         self.ui.pushButton_Home.clicked.connect(self.cambiar_ventana_principal)
-        self.ui.pushButtonBuscarFecha.clicked.connect(self.busqueda_porfecha)
-        self.ui.pushButtonBuscarEtiqueta.clicked.connect(self.busqueda_poretiqueta)
-        self.ui.pushButton_Informe_Etiqueta_2.clicked.connect(self.cambiar_ventana_informe)
-        self.ui.pushButton_Notas_Destacadas_2.clicked.connect(self.cambiar_ventana_notas_destacadas)
-    def cambiar_ventana_notas_destacadas(self):
-        self.parent().parent().notas_destacadas_screen.ui.listViewNotas.model().clear()
-        self.parent().setCurrentWidget(self.parent().parent().notas_destacadas_screen)
+        self.ui.pushButtonBuscar.clicked.connect(self.buscar_destacados)
+        self.ui.pushButton_Buscar_Nota.clicked.connect(self.cambiar_ventana_buscador)
+        self.ui.pushButton_Informe_Etiqueta.clicked.connect(self.cambiar_ventana_informe)
     def cambiar_ventana_informe(self):
         self.parent().parent().informe_screen.ui.listViewNotas.model().clear()
         self.parent().parent().informe_screen.ui.lineEditEtiqueta.setText("")
         self.parent().parent().informe_screen.ui.label_cantidad_notas_valor.setText("")
         self.parent().setCurrentWidget(self.parent().parent().informe_screen)
-    def busqueda_poretiqueta(self):
-        etiqueta=self.ui.lineEditEtiqueta.text()
+    def cambiar_ventana_buscador(self):
+        self.parent().parent().buscador_screen.ui.listViewNotas.model().clear()
+        self.parent().parent().buscador_screen.ui.lineEditEtiqueta.setText("")
+        self.parent().setCurrentWidget(self.parent().parent().buscador_screen)
+    def buscar_destacados(self):
         try:
-            lista_notas=self.anotador.busqueda_por_etiqueta(etiqueta)
+           lista_notas=self.anotador.listadestacados()
         except NoElementFound:
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle("ERROR EXISTENCIAL")
             msg_box.setIcon(QMessageBox.Information)
-            msg_box.setText(f"No fue encontrada ninguna nota con la etiqueta: {etiqueta}")
+            msg_box.setText(f"No fue encontrada ninguna nota destacada")
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
         else:
@@ -47,29 +45,8 @@ class WBuscador(QWidget):
                 display=f"{lista_ruta[0].nombre}/{lista_ruta[1].nombre}/{lista_ruta[2].nombre}/{str(nota)}"
                 item = QStandardItem(display)
                 item.setEditable(False)
-                item.nota =nota
+                item.nota=nota
                 item.ruta=lista_ruta
-                self.ui.listViewNotas.model().appendRow(item)
-    def busqueda_porfecha(self):
-        fecha = self.ui.dateEdit.text()
-        try:
-            lista_notas = self.anotador.busqueda_por_fecha(fecha)
-        except NoElementFound:
-            msg_box = QMessageBox(self)
-            msg_box.setWindowTitle("ERROR EXISTENCIAL")
-            msg_box.setIcon(QMessageBox.Information)
-            msg_box.setText(f"No fue encontrada ninguna nota con la fecha: {fecha}")
-            msg_box.setStandardButtons(QMessageBox.Ok)
-            msg_box.exec_()
-        else:
-            self.ui.listViewNotas.model().clear()
-            for tupla in lista_notas:
-                nota, lista_ruta = tupla
-                display = f"{lista_ruta[0].nombre}/{lista_ruta[1].nombre}/{lista_ruta[2].nombre}/{str(nota)}"
-                item = QStandardItem(display)
-                item.setEditable(False)
-                item.nota = nota
-                item.ruta = lista_ruta
                 self.ui.listViewNotas.model().appendRow(item)
     def cambiar_ventana_principal(self):
         self.parent().setCurrentWidget(

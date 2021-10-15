@@ -22,10 +22,20 @@ class principal(QWidget):
         self.ui.pushButton_Archivar_Libro.clicked.connect(self.borrarlibro)
         self.connect(self.ui.pushButton_Ver_Libro, SIGNAL("clicked()"), self.cambiar_Ventana)
         self.connect(self.ui.pushButton_Buscar_Nota,SIGNAL("clicked()"),self.buscar)
+        self.ui.pushButton_Informe_Etiqueta.clicked.connect(self.cambiar_ventana_informe)
+        self.ui.pushButton_Notas_Destacadas.clicked.connect(self.cambiar_ventana_notas_destacadas)
+    def cambiar_ventana_notas_destacadas(self):
+        self.parent().parent().notas_destacadas_screen.ui.listViewNotas.model().clear()
+        self.parent().setCurrentWidget(self.parent().parent().notas_destacadas_screen)
+    def cambiar_ventana_informe(self):
+        self.parent().parent().informe_screen.ui.listViewNotas.model().clear()
+        self.parent().parent().informe_screen.ui.lineEditEtiqueta.setText("")
+        self.parent().parent().informe_screen.ui.label_cantidad_notas_valor.setText("")
+        self.parent().setCurrentWidget(self.parent().parent().informe_screen)
     def buscar(self):
-        self.parent().setCurrentWidget(self.parent().parent().buscador_screen)
         self.parent().parent().buscador_screen.ui.listViewNotas.model().clear()
         self.parent().parent().buscador_screen.ui.lineEditEtiqueta.setText("")
+        self.parent().setCurrentWidget(self.parent().parent().buscador_screen)
     def actualizarSelecion(self):
         indice = self.ui.listViewLibros.selectedIndexes()[0]
         libro = self.ui.listViewLibros.model().itemFromIndex(indice).libro

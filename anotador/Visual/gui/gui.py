@@ -2,8 +2,10 @@ import sys
 
 from PySide2.QtWidgets import QMainWindow, QApplication, QStackedWidget
 from anotador.Mundo.mundo import *
+from anotador.Visual.gui.WInforme import WInforme_Etiqueta
 from anotador.Visual.gui.WLibro import  WLibro
 from anotador.Visual.gui.WNota import WNota
+from anotador.Visual.gui.WNotas_Destacadas import WNotas_Destacadas
 from anotador.Visual.gui.Wbuscador import WBuscador
 from anotador.Visual.gui.wPagina import WPagina
 from anotador.Visual.gui.WSeccion import WSeccion
@@ -23,12 +25,16 @@ class ventana(QMainWindow):
         self.notas_screen=WPagina(self)
         self.nota_actual_screen=WNota(self)
         self.buscador_screen=WBuscador(self)
+        self.informe_screen=WInforme_Etiqueta(self)
+        self.notas_destacadas_screen=WNotas_Destacadas(self)
         self.central_widget.addWidget(self.buscador_screen)
         self.central_widget.addWidget(self.start_screen)
         self.central_widget.addWidget(self.secciones_screen)
         self.central_widget.addWidget(self.paginas_screen)
         self.central_widget.addWidget(self.nota_actual_screen)
         self.central_widget.addWidget(self.notas_screen)
+        self.central_widget.addWidget( self.informe_screen)
+        self.central_widget.addWidget(self.notas_destacadas_screen)
         self.central_widget.setCurrentWidget(self.start_screen)
         self.anotador = Anotador()
         self.show()

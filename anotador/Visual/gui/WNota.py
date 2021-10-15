@@ -75,7 +75,7 @@ class WNota(QWidget):
     def borraretiqueta(self):
         indice = self.ui.listViewEtiquetas.selectedIndexes()[0]
         nombre = self.ui.listViewEtiquetas.model().itemFromIndex(indice).etiqueta
-        self.nota.borrar_etiqueta(nombre)
+        self.nota.eliminiar_etiqueta(nombre)
         self.actualizar_listaetiquetas()
         if len(self.nota.etiquetas) == 0:
             self.actualizar_boton_etiqueta(False)

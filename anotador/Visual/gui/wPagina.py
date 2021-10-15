@@ -16,13 +16,13 @@ class WPagina(QWidget):
 
     def _configurar(self):
         self.ui.listViewNotas_2.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.change_widget)
+        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.cambiar_vetana_anterior)
         self.ui.pushButtonCrear_Nota_2.clicked.connect(self.abrirdialogocrear)
         self.ui.listViewNotas_2.selectionModel().selectionChanged.connect(self.selecionar_nota)
         self.ui.pushButton_Borrar_Nota_2.clicked.connect(self.borrarnota)
         self.ui.pushButton_Modificar_Nota_2.clicked.connect(self.abrir_dialogo_modificar)
         self.ui.pushButton_Archivar_Nota_2.clicked.connect(self.borrarnota)
-        self.connect(self.ui.pushButton_Ver_Nota_2, SIGNAL("clicked()"), self.change_stage)
+        self.connect(self.ui.pushButton_Ver_Nota_2, SIGNAL("clicked()"), self.cambiar_ventana)
 
     def actualizar_listanotas(self):
         self.ui.listViewNotas_2.model().clear()
@@ -43,7 +43,7 @@ class WPagina(QWidget):
                 self.ingresar_listanotas(self.pagina.notas[titulo])
                 self.parent().parent().actualizar_botones_busquedas(True)
                 self.parent().parent().actualizar_nota_actual(self.pagina.notas[titulo])
-                self.change_stage()
+                self.parent().setCurrentWidget(self.parent().parent().nota_actual_screen)
 
             except NotaExiste:
                 msg_box = QMessageBox(self)
@@ -59,7 +59,7 @@ class WPagina(QWidget):
         item.nota =nota
         self.ui.listViewNotas_2.model().appendRow(item)
 
-    def change_widget(self):
+    def cambiar_vetana_anterior(self):
         self.parent().setCurrentWidget(
             self.parent().parent().paginas_screen)
 
@@ -68,7 +68,8 @@ class WPagina(QWidget):
         nota = self.ui.listViewNotas_2.model().itemFromIndex(indice).nota
         self.parent().parent().actualizar_nota_actual(nota)
 
-    def change_stage(self):
+    def cambiar_ventana(self):
+        self.actualizarSelecion()
         self.parent().setCurrentWidget(self.parent().parent().nota_actual_screen)
     def abrir_dialogo_modificar(self):
         indice = self.ui.listViewNotas_2.selectedIndexes()[0]
@@ -100,7 +101,6 @@ class WPagina(QWidget):
     def selecionar_nota(self, selected, deselected):
         indices = selected.indexes()
         if len(indices) > 0:
-            self.actualizarSelecion()
             self.actualizar_botones_notas(True)
         else:
             self.actualizar_botones_notas(False)

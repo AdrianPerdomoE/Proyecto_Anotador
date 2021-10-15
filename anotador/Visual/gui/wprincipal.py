@@ -20,12 +20,18 @@ class principal(QWidget):
         self.ui.pushButton_Borrar_Libro.clicked.connect(self.borrarlibro)
         self.ui.pushButton_Modificar_Libro.clicked.connect(self.abrir_dialogo_modificarlibro)
         self.ui.pushButton_Archivar_Libro.clicked.connect(self.borrarlibro)
-        self.connect(self.ui.pushButton_Ver_Libro, SIGNAL("clicked()"), self.change_widget)
+        self.connect(self.ui.pushButton_Ver_Libro, SIGNAL("clicked()"), self.cambiar_Ventana)
+        self.connect(self.ui.pushButton_Buscar_Nota,SIGNAL("clicked()"),self.buscar)
+    def buscar(self):
+        self.parent().setCurrentWidget(self.parent().parent().buscador_screen)
+        self.parent().parent().buscador_screen.ui.listViewNotas.model().clear()
+        self.parent().parent().buscador_screen.ui.lineEditEtiqueta.setText("")
     def actualizarSelecion(self):
         indice = self.ui.listViewLibros.selectedIndexes()[0]
         libro = self.ui.listViewLibros.model().itemFromIndex(indice).libro
         self.parent().parent().actualizar_secciones_pantalla(libro)
-    def change_widget(self):
+    def cambiar_Ventana(self):
+        self.actualizarSelecion()
         self.parent().setCurrentWidget(self.parent().parent().secciones_screen)
     def abrir_dialogo_modificarlibro(self):
         indice = self.ui.listViewLibros.selectedIndexes()[0]
@@ -52,10 +58,10 @@ class principal(QWidget):
         self.actualizar_listalibros()
         if len(self.anotador.libros)==0:
             self.actualizar_botones_libro(False)
+            self.parent().parent().actualizar_botones_busquedas(False)
     def selecionar_libro(self,selected, deselected):
         indices=selected.indexes()
         if len(indices)>0:
-            self.actualizarSelecion()
             self.actualizar_botones_libro(True)
         else:
             self.actualizar_botones_libro(False)

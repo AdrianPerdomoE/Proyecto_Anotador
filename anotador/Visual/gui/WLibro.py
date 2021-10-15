@@ -14,13 +14,13 @@ class WLibro(QWidget):
         self.libro=libro
     def _configurar(self):
         self.ui.listViewSecciones_2.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.change_widget)
+        self.connect(self.ui.pushButtonRegresar_2, SIGNAL("clicked()"), self.cambiar_ventana_anterior)
         self.ui.pushButtonCrear_Seccion_2.clicked.connect(self.abrirdialogocrear)
         self.ui.listViewSecciones_2.selectionModel().selectionChanged.connect(self.selecionar_seccion)
         self.ui.pushButton_Borrar_seccion_2.clicked.connect(self.borrarseccion)
         self.ui.pushButton_Modificar_seccion_2.clicked.connect(self.abrir_dialogo_modificar)
         self.ui.pushButton_Archivar_seccion_2.clicked.connect(self.borrarseccion)
-        self.connect(self.ui.pushButton_Ver_seccion_2, SIGNAL("clicked()"), self.change_stage)
+        self.connect(self.ui.pushButton_Ver_seccion_2, SIGNAL("clicked()"), self.cambiar_ventanta)
     def actualizar_listasecciones(self):
         self.ui.listViewSecciones_2.model().clear()
         secciones=self.libro.secciones.values()
@@ -49,14 +49,15 @@ class WLibro(QWidget):
         item.setEditable(False)
         item.seccion=seccion
         self.ui.listViewSecciones_2.model().appendRow(item)
-    def change_widget(self):
+    def cambiar_ventana_anterior(self):
         self.parent().setCurrentWidget(
             self.parent().parent().start_screen)
     def actualizarSelecion(self):
         indice = self.ui.listViewSecciones_2.selectedIndexes()[0]
         seccion = self.ui.listViewSecciones_2.model().itemFromIndex(indice).seccion
         self.parent().parent().actualizar_paginas_pantalla(seccion)
-    def change_stage(self):
+    def cambiar_ventanta(self):
+        self.actualizarSelecion()
         self.parent().setCurrentWidget(self.parent().parent().paginas_screen)
     def abrir_dialogo_modificar(self):
         indice = self.ui.listViewSecciones_2.selectedIndexes()[0]
@@ -82,10 +83,10 @@ class WLibro(QWidget):
         self.actualizar_listasecciones()
         if len(self.libro.secciones)==0:
             self.actualizar_botones_secciones(False)
+            self.parent().parent().actualizar_botones_busquedas(False)
     def selecionar_seccion(self,selected, deselected):
         indices=selected.indexes()
         if len(indices)>0:
-            self.actualizarSelecion()
             self.actualizar_botones_secciones(True)
         else:
             self.actualizar_botones_secciones(False)

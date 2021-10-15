@@ -11,3 +11,5 @@ class NotaExiste(ErrorAnotador):
     pass
 class EtiquetaExiste(ErrorAnotador):
     pass
+class NoElementFound(ErrorAnotador):
+    pass

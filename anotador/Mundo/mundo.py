@@ -1,15 +1,15 @@
 import time
 
-from anotador.Mundo.Errores import LibroExiste, SeccionExiste, PaginaExiste, NotaExiste, EtiquetaExiste
+from anotador.Mundo.Errores import LibroExiste, SeccionExiste, PaginaExiste, NotaExiste, EtiquetaExiste, NoElementFound
 
 
 class Nota:
 
     def __init__(self, nombre:str, etiqueta=None):
 
-        self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
+        self.fecha_creacion = time.strftime("%d/%m/%Y", time.localtime())
 
-        self.hora_creacion = time.strftime("%H-%M:%S", time.localtime())
+        self.hora_creacion = time.strftime("%H:%M:%S", time.localtime())
 
         self.nombre = nombre
 
@@ -43,7 +43,7 @@ class Pagina:
 
         self.nombre= nombre
 
-        self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
+        self.fecha_creacion = time.strftime("%d/%m/%Y", time.localtime())
 
         self.notas={}
     def __str__(self):
@@ -77,7 +77,7 @@ class Seccion:
 
         self.nombre= nombre
 
-        self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
+        self.fecha_creacion = time.strftime("%d/%m/%Y", time.localtime())
 
         self.paginas={}
     def __str__(self):
@@ -106,7 +106,7 @@ class Libro:
 
         self.nombre= nombre
 
-        self.fecha_creacion = time.strftime("%Y-%m-%d", time.localtime())
+        self.fecha_creacion = time.strftime("%d/%m/%Y", time.localtime())
 
         self.secciones = {}
     def __str__(self):
@@ -153,7 +153,7 @@ class Anotador:
         self.libros[nuevo]=antiguo
     def listadestacados(self):
         """Funcion que guarda las llaves de las notas destacadas"""
-        destacados= []
+        lista_notas_destacadas= []
         libros=self.libros
         for librokey in libros.keys():#iterar los libros del anotador
             libro=libros[librokey]
@@ -167,11 +167,13 @@ class Anotador:
                     for notakey in notas.keys():#iterar las notas de una pagina
                         nota=notas[notakey]
                         if nota.destacado:#si la nota esta destacada, se agrega a la lista
-                            destacados.append(notakey)
-        return destacados# se devuelve lista con los nombres de las notas destacadas
+                            lista_notas_destacadas.append((nota, [libro, seccion, pagina]))
+        if len(lista_notas_destacadas) == 0:
+            raise NoElementFound()
+        return lista_notas_destacadas# se devuelve lista con los nombres de las notas destacadas
     def  informe_etiquetas(self, xetiqueta:str):
         """Funcion que cuenta la cantidad de veces que una nota tiene xetiqueta y las notas donde esta"""
-        lista = []#lista donde se guardara las notas donde se encuentre la etiqueta
+        lista_notas = []#lista donde se guardara las notas donde se encuentre la etiqueta
         contador=0#contador de de la etiqueta
         libros = self.libros
         for librokey in libros.keys():  # iterar los libros del anotador
@@ -185,8 +187,51 @@ class Anotador:
                     notas = pagina.notas
                     for notakey in notas.keys():  # iterar las notas de una pagina
                         nota = notas[notakey]
-                        etiquetas=nota.etiquetas
-                        if xetiqueta in etiquetas:
-                            contador+=1
-                            lista.append(notakey)
-        return (contador,lista)  # se devuelve tupla con el contador y la lista de notas
+                        if len(nota.etiquetas)!=0:
+                            etiquetas=nota.etiquetas
+                            if xetiqueta in etiquetas:
+                                contador+=1
+                                lista_notas.append((nota,[libro,seccion,pagina]))
+        if len(lista_notas) == 0:
+            raise NoElementFound()
+        return (contador,lista_notas)  # se devuelve tupla con el contador y la lista de notas
+    def busqueda_por_etiqueta(self,etiqueta):
+        lista_notas =[]
+        libros = self.libros
+        for librokey in libros.keys():
+            libro = libros[librokey]
+            secciones = libro.secciones
+            for secckey in secciones.keys():
+                seccion = secciones[secckey]
+                paginas = seccion.paginas
+                for pagkey in paginas.keys():
+                    pagina = paginas[pagkey]
+                    notas = pagina.notas
+                    for notakey in notas.keys():
+                        nota = notas[notakey]
+                        if len(nota.etiquetas)!=0:
+                            etiquetas = nota.etiquetas
+                            if etiqueta in etiquetas:
+                                lista_notas.append((nota,[libro,seccion,pagina]))#regreso lista de tuplas con(nota,ruta)
+        if len(lista_notas)==0:
+            raise NoElementFound()
+        return lista_notas
+    def busqueda_por_fecha(self, fecha):
+        lista_notas = []
+        libros = self.libros
+        for librokey in libros.keys():
+            libro = libros[librokey]
+            secciones = libro.secciones
+            for secckey in secciones.keys():
+                seccion = secciones[secckey]
+                paginas = seccion.paginas
+                for pagkey in paginas.keys():
+                    pagina = paginas[pagkey]
+                    notas = pagina.notas
+                    for notakey in notas.keys():
+                        nota = notas[notakey]
+                        if fecha ==nota.fecha_creacion:
+                            lista_notas.append((nota, [libro, seccion, pagina]))  # regreso lista de tuplas con(nota,ruta)
+        if len(lista_notas)==0:
+            raise NoElementFound()
+        return lista_notas

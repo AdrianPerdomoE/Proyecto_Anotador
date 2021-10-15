@@ -17,7 +17,7 @@ class WNota(QWidget):
 
     def _configurar(self):
         self.ui.listViewEtiquetas.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.change_widget)
+        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.cambiar_ventana_anterior)
         self.ui.pushButtonagregarEtiqueta.clicked.connect(self.abrirdialogocrear)
         self.ui.listViewEtiquetas.selectionModel().selectionChanged.connect(self.selecionar_etiqueta)
         self.ui.pushButtonEliminarEtiqueta.clicked.connect(self.borraretiqueta)
@@ -69,7 +69,7 @@ class WNota(QWidget):
         item.etiqueta = etiqueta
         self.ui.listViewEtiquetas.model().appendRow(item)
 
-    def change_widget(self):
+    def cambiar_ventana_anterior(self):
         self.parent().setCurrentWidget(
             self.parent().parent().notas_screen)
     def borraretiqueta(self):

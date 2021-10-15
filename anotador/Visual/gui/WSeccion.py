@@ -17,13 +17,13 @@ class WSeccion(QWidget):
 
     def _configurar(self):
         self.ui.listViewPaginas.setModel(QStandardItemModel())
-        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.change_widget)
+        self.connect(self.ui.pushButtonRegresar, SIGNAL("clicked()"), self.cambiar_ventana_anterior)
         self.ui.pushButtonCrear_Pagina.clicked.connect(self.abrirdialogocrear)
         self.ui.listViewPaginas.selectionModel().selectionChanged.connect(self.selecionar_pagina)
         self.ui.pushButton_Borrar_Pagina.clicked.connect(self.borrarpagina)
         self.ui.pushButton_Modificar_Pagina.clicked.connect(self.abrir_dialogo_modificar)
         self.ui.pushButton_Archivar_Pagina.clicked.connect(self.borrarpagina)
-        self.connect(self.ui.pushButton_Ver_Pagina, SIGNAL("clicked()"), self.change_stage)
+        self.connect(self.ui.pushButton_Ver_Pagina, SIGNAL("clicked()"), self.cambiar_ventana)
 
     def actualizar_listapaginas(self):
         self.ui.listViewPaginas.model().clear()
@@ -56,7 +56,7 @@ class WSeccion(QWidget):
         item.pagina =pagina
         self.ui.listViewPaginas.model().appendRow(item)
 
-    def change_widget(self):
+    def cambiar_ventana_anterior(self):
         self.parent().setCurrentWidget(
             self.parent().parent().secciones_screen)
 
@@ -65,7 +65,8 @@ class WSeccion(QWidget):
         pagina = self.ui.listViewPaginas.model().itemFromIndex(indice).pagina
         self.parent().parent().actualizar_notas_pantalla(pagina)
 
-    def change_stage(self):
+    def cambiar_ventana(self):
+        self.actualizarSelecion()
         self.parent().setCurrentWidget(self.parent().parent().notas_screen)
 
     def abrir_dialogo_modificar(self):
@@ -93,11 +94,11 @@ class WSeccion(QWidget):
         self.actualizar_listapaginas()
         if len(self.seccion.paginas) == 0:
             self.actualizar_botones_paginas(False)
+            self.parent().parent().actualizar_botones_busquedas(False)
 
     def selecionar_pagina(self, selected, deselected):
         indices = selected.indexes()
         if len(indices) > 0:
-            self.actualizarSelecion()
             self.actualizar_botones_paginas(True)
         else:
             self.actualizar_botones_paginas(False)

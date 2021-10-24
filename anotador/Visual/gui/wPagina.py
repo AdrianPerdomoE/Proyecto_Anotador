@@ -2,7 +2,7 @@ from PySide2.QtCore import SIGNAL
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtWidgets import QDialog, QMessageBox, QWidget
 from anotador.Mundo.mundo import *
-from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
+from anotador.Visual.gui.Dialogos import DialogoModificar, DialogoCrear_nota
 from anotador.Visual.ui_Ventana_pagina import Ui_WNotas
 
 
@@ -34,17 +34,18 @@ class WPagina(QWidget):
             self.ui.listViewNotas_2.model().appendRow(item)
 
     def abrirdialogocrear(self):
-        dialogo = DialogoCrear(self)
+        dialogo =DialogoCrear_nota(self)
         resp = dialogo.exec_()
         if resp == QDialog.Accepted:
             titulo = dialogo.ui.lineEditTitulo.text()
+            etiqueta=dialogo.ui.lineEditEtiqueta.text()
             try:
                 self.pagina.agregar_nota(titulo)
+                self.pagina.notas[titulo].agregar_etiqueta(etiqueta)
                 self.ingresar_listanotas(self.pagina.notas[titulo])
                 self.parent().parent().actualizar_botones_busquedas(True)
                 self.parent().parent().actualizar_nota_actual(self.pagina.notas[titulo])
                 self.parent().setCurrentWidget(self.parent().parent().nota_actual_screen)
-
             except NotaExiste:
                 msg_box = QMessageBox(self)
                 msg_box.setWindowTitle("ERROR EXISTENCIAL")

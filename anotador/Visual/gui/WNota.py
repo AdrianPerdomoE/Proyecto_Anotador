@@ -77,13 +77,13 @@ class WNota(QWidget):
         nombre = self.ui.listViewEtiquetas.model().itemFromIndex(indice).etiqueta
         self.nota.eliminiar_etiqueta(nombre)
         self.actualizar_listaetiquetas()
-        if len(self.nota.etiquetas) == 0:
-            self.actualizar_boton_etiqueta(False)
-
     def selecionar_etiqueta(self, selected, deselected):
         indices = selected.indexes()
         if len(indices) > 0:
-            self.actualizar_boton_etiqueta(True)
+            if len(self.nota.etiquetas)!=1:
+                self.actualizar_boton_etiqueta(True)
+            else:
+                self.actualizar_boton_etiqueta(False)
         else:
             self.actualizar_boton_etiqueta(False)
 

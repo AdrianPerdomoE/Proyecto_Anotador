@@ -11,11 +11,12 @@ class principal(QWidget):
         QWidget.__init__(self,parent)
         self.ui =Ui_WidgetPrincipal()
         self.ui.setupUi(self)
+        self.anotador = parent.anotador
         self._configurar()
-        self.anotador=parent.anotador
     def _configurar(self):
         self.ui.pushButtonCrear_Libro.clicked.connect(self.abrir_dialogo_crearlibro)
         self.ui.listViewLibros.setModel(QStandardItemModel())
+        self.actualizar_listalibros()
         self.ui.listViewLibros.selectionModel().selectionChanged.connect(self.selecionar_libro)
         self.ui.pushButton_Borrar_Libro.clicked.connect(self.borrarlibro)
         self.ui.pushButton_Modificar_Libro.clicked.connect(self.abrir_dialogo_modificarlibro)

@@ -1,10 +1,7 @@
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtWidgets import QWidget, QMessageBox
-
 from anotador.Mundo.Errores import NoElementFound
 from anotador.Visual.ui_Wbuscador import Ui_WBuscador
-
-
 class WBuscador(QWidget):
     def __init__(self,parent):
         QWidget.__init__(self,parent)

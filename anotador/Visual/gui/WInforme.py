@@ -3,8 +3,6 @@ from PySide2.QtWidgets import QWidget, QMessageBox
 
 from anotador.Mundo.Errores import NoElementFound
 from anotador.Visual.ui_WInforme_Etiqueta import Ui_WInforme_Etiqueta
-
-
 class WInforme_Etiqueta(QWidget):
     def __init__(self,parent):
         QWidget.__init__(self,parent)

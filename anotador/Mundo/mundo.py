@@ -1,3 +1,4 @@
+import pickle
 import time
 
 from anotador.Mundo.Errores import LibroExiste, SeccionExiste, PaginaExiste, NotaExiste, EtiquetaExiste, NoElementFound
@@ -134,7 +135,13 @@ class Anotador:
     def __init__(self):
 
         self.libros={}
-
+    def save(self,archivo):
+        with open(archivo,"wb") as f:
+            pickle.dumps(self,f)
+    def load(self,archivo):
+        with open (archivo,"rb") as f:
+            data=pickle.loads(f)
+            self.libros=data.libros
     def libro_existe(self, nombre):
         """Funcion para determinar si el libro existe, regresa True si se encuentra en el diccionario, False si no"""
         llaves= self.libros.keys()

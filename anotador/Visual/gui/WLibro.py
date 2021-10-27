@@ -83,7 +83,6 @@ class WLibro(QWidget):
         self.actualizar_listasecciones()
         if len(self.libro.secciones)==0:
             self.actualizar_botones_secciones(False)
-            self.parent().parent().actualizar_botones_busquedas(False)
     def selecionar_seccion(self,selected, deselected):
         indices=selected.indexes()
         if len(indices)>0:

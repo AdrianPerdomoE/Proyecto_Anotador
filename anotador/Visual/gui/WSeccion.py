@@ -94,8 +94,6 @@ class WSeccion(QWidget):
         self.actualizar_listapaginas()
         if len(self.seccion.paginas) == 0:
             self.actualizar_botones_paginas(False)
-            self.parent().parent().actualizar_botones_busquedas(False)
-
     def selecionar_pagina(self, selected, deselected):
         indices = selected.indexes()
         if len(indices) > 0:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'WidgetprincipalxBDNQb.ui'
+## Form generated from reading UI file 'WidgetprincipalaJTjoR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -204,19 +204,19 @@ class Ui_WidgetPrincipal(object):
 
         self.pushButton_Informe_Etiqueta = QPushButton(self.frame_9)
         self.pushButton_Informe_Etiqueta.setObjectName(u"pushButton_Informe_Etiqueta")
-        self.pushButton_Informe_Etiqueta.setEnabled(False)
+        self.pushButton_Informe_Etiqueta.setEnabled(True)
 
         self.verticalLayout_11.addWidget(self.pushButton_Informe_Etiqueta)
 
         self.pushButton_Buscar_Nota = QPushButton(self.frame_9)
         self.pushButton_Buscar_Nota.setObjectName(u"pushButton_Buscar_Nota")
-        self.pushButton_Buscar_Nota.setEnabled(False)
+        self.pushButton_Buscar_Nota.setEnabled(True)
 
         self.verticalLayout_11.addWidget(self.pushButton_Buscar_Nota)
 
         self.pushButton_Notas_Destacadas = QPushButton(self.frame_9)
         self.pushButton_Notas_Destacadas.setObjectName(u"pushButton_Notas_Destacadas")
-        self.pushButton_Notas_Destacadas.setEnabled(False)
+        self.pushButton_Notas_Destacadas.setEnabled(True)
 
         self.verticalLayout_11.addWidget(self.pushButton_Notas_Destacadas)
 

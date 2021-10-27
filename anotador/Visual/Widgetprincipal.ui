@@ -427,7 +427,7 @@ background-color: rgb(254, 255, 237);</string>
                   <item>
                    <widget class="QPushButton" name="pushButton_Informe_Etiqueta">
                     <property name="enabled">
-                     <bool>false</bool>
+                     <bool>true</bool>
                     </property>
                     <property name="text">
                      <string>Informe etiqueta</string>
@@ -437,7 +437,7 @@ background-color: rgb(254, 255, 237);</string>
                   <item>
                    <widget class="QPushButton" name="pushButton_Buscar_Nota">
                     <property name="enabled">
-                     <bool>false</bool>
+                     <bool>true</bool>
                     </property>
                     <property name="text">
                      <string>Buscar nota</string>
@@ -447,7 +447,7 @@ background-color: rgb(254, 255, 237);</string>
                   <item>
                    <widget class="QPushButton" name="pushButton_Notas_Destacadas">
                     <property name="enabled">
-                     <bool>false</bool>
+                     <bool>true</bool>
                     </property>
                     <property name="text">
                      <string>Notas destacadas</string>

@@ -69,7 +69,6 @@ class principal(QWidget):
         self.actualizar_listalibros()
         if len(self.anotador.libros)==0:
             self.actualizar_botones_libro(False)
-            self.parent().parent().actualizar_botones_busquedas(False)
     def selecionar_libro(self,selected, deselected):
         indices=selected.indexes()
         if len(indices)>0:

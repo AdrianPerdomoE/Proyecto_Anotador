@@ -1,19 +1,20 @@
 from PySide2.QtWidgets import QMainWindow, QStackedWidget
-from anotador.Mundo.mundo import *
 from anotador.Visual.gui.WInforme import WInforme_Etiqueta
-from anotador.Visual.gui.WLibro import  WLibro
+from anotador.Visual.gui.WLibro import WLibro
 from anotador.Visual.gui.WNota import WNota
 from anotador.Visual.gui.WNotas_Destacadas import WNotas_Destacadas
+from anotador.Visual.gui.WSeccion import WSeccion
 from anotador.Visual.gui.Wbuscador import WBuscador
 from anotador.Visual.gui.wPagina import WPagina
-from anotador.Visual.gui.WSeccion import WSeccion
 from anotador.Visual.gui.wprincipal import principal
+
+
 class Ventana(QMainWindow):
     ARCHIVO="Datos.Anotador"
     def __init__(self,anotador,parent=None):
         QMainWindow.__init__(self,parent)
         self.anotador=anotador
-        #self.anotador.load(Ventana.ARCHIVO)
+        self.anotador.load(Ventana.ARCHIVO)
         self.central_widget = QStackedWidget()
         self.setCentralWidget(self.central_widget)
         self.start_screen =principal(self)
@@ -34,9 +35,8 @@ class Ventana(QMainWindow):
         self.central_widget.addWidget( self.informe_screen)
         self.central_widget.addWidget(self.notas_destacadas_screen)
         self.central_widget.setCurrentWidget(self.start_screen)
-        self.anotador = Anotador()
         self.show()
-        #self.closeEvent=self.cerrar_ventana
+        self.closeEvent=self.cerrar_ventana
     def cerrar_ventana(self,event):
         self.anotador.save(Ventana.ARCHIVO)
     def actualizar_secciones_pantalla(self,libro):
@@ -63,7 +63,3 @@ class Ventana(QMainWindow):
         if self.nota_actual_screen.nota.destacado:
             self.nota_actual_screen.ui.pushButtonDestacar.setText("Desmarcar")
         self.central_widget.addWidget(self.nota_actual_screen)
-    def actualizar_botones_busquedas(self,boolean):
-        self.start_screen.ui.pushButton_Buscar_Nota.setEnabled(boolean)
-        self.start_screen.ui.pushButton_Notas_Destacadas.setEnabled(boolean)
-        self.start_screen.ui.pushButton_Informe_Etiqueta.setEnabled(boolean)

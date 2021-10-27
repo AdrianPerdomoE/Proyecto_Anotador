@@ -43,7 +43,6 @@ class WPagina(QWidget):
                 self.pagina.agregar_nota(titulo)
                 self.pagina.notas[titulo].agregar_etiqueta(etiqueta)
                 self.ingresar_listanotas(self.pagina.notas[titulo])
-                self.parent().parent().actualizar_botones_busquedas(True)
                 self.parent().parent().actualizar_nota_actual(self.pagina.notas[titulo])
                 self.parent().setCurrentWidget(self.parent().parent().nota_actual_screen)
             except NotaExiste:
@@ -97,8 +96,6 @@ class WPagina(QWidget):
         self.actualizar_listanotas()
         if len(self.pagina.notas) == 0:
             self.actualizar_botones_notas(False)
-            self.parent().parent().actualizar_botones_busquedas(False)
-
     def selecionar_nota(self, selected, deselected):
         indices = selected.indexes()
         if len(indices) > 0:

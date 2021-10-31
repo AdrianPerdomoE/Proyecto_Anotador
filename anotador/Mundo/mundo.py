@@ -20,12 +20,12 @@ class Nota:
         if etiqueta != None:
             self.etiquetas.append(etiqueta)
         self.destacado = False
-    def __str__(self):
+    def __str__(self):#sobreescribimos la funcion de str para manipular como mostramos el texto en el listview
         if self.destacado:
             return (f"★ {self.nombre}_ _ _{self.fecha_creacion}:  {self.hora_creacion}")
         return (f"{self.nombre}_ _ _{self.fecha_creacion}:  {self.hora_creacion}")
 
-    def etiqueta_existe(self, etiqueta):
+    def etiqueta_existe(self, etiqueta):#Funcion para determinar si una etiqueta ya existe y levantar el error
         """Funcion para determinar si la etiqueta existe, regresa True si se encuentra en el diccionario, False si no"""
         valor=etiqueta in self.etiquetas
         if  valor:
@@ -64,12 +64,6 @@ class Pagina:
         antiguo=self.notas.pop(nombrenota)
         antiguo.nombre=nuevo
         self.notas[nuevo]=antiguo
-    def modificar_etiqueta_nota(self,nombrenota: str,etiqueta,borrar=False,agregar=False):#posiblemente se implemente en la nota
-        lista_etiquetas=self.notas[nombrenota]
-        if borrar:
-            lista_etiquetas.pop(etiqueta)
-        elif agregar:
-            lista_etiquetas.append(etiqueta)
     def borrar_nota(self,nombrepagina):
         self.notas.pop(nombrepagina)
 class Seccion:
@@ -135,11 +129,11 @@ class Anotador:
     def __init__(self):
 
         self.libros={}
-    def save(self,archivo):
+    def save(self,archivo):#Funcion para guargar los cambios hechos en la aplicación
         with open(archivo,"wb") as f:
             pickle.dump(self,f)
 
-    def load(self,archivo):
+    def load(self,archivo):#Funcion para cargar el documento que contenga el anotador guardado, si no existe, se crea, si esta vacio, se salta la funcion
         try:
             with open(archivo,"rb") as f:
                 if os.path.exists(archivo) and os.path.getsize(archivo) > 0:
@@ -207,7 +201,7 @@ class Anotador:
                             etiquetas=nota.etiquetas
                             if xetiqueta in etiquetas:
                                 contador+=1
-                                lista_notas.append((nota,[libro,seccion,pagina]))
+                                lista_notas.append((nota,[libro,seccion,pagina]))#se agrega a la lista tupla con el objeto nota y una lista de la ruta donde estaba
         if len(lista_notas) == 0:
             raise NoElementFound()
         return (contador,lista_notas)  # se devuelve tupla con el contador y la lista de notas

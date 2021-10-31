@@ -5,7 +5,6 @@ from anotador.Mundo.mundo import *
 from anotador.Visual.gui.Dialogos import DialogoCrear, DialogoModificar
 from anotador.Visual.ui_Widgetprincipal import Ui_WidgetPrincipal
 
-
 class principal(QWidget):
     def __init__(self,parent):
         QWidget.__init__(self,parent)

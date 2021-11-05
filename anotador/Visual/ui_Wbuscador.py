@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'WbuscadorqMAczy.ui'
+## Form generated from reading UI file 'WbuscadorOWarvJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_WBuscador(object):
     def setupUi(self, WBuscador):
         if not WBuscador.objectName():
             WBuscador.setObjectName(u"WBuscador")
-        WBuscador.resize(865, 715)
+        WBuscador.resize(864, 700)
         self.verticalLayout = QVBoxLayout(WBuscador)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -141,6 +141,7 @@ class Ui_WBuscador(object):
         self.dateEdit.setStyleSheet(u"background-color: rgb(170, 255, 255);\n"
 "selection-background-color: rgb(255, 170, 255);")
         self.dateEdit.setDateTime(QDateTime(QDate(2021, 1, 2), QTime(0, 0, 0)))
+        self.dateEdit.setCurrentSection(QDateTimeEdit.DaySection)
         self.dateEdit.setCalendarPopup(True)
         self.dateEdit.setCurrentSectionIndex(0)
         self.dateEdit.setDate(QDate(2021, 1, 2))
@@ -279,6 +280,7 @@ class Ui_WBuscador(object):
         self.lineEditEtiqueta.setPlaceholderText(QCoreApplication.translate("WBuscador", u"Ingrese etiqueta a buscar", None))
         self.labelbusquedafecha.setText(QCoreApplication.translate("WBuscador", u"Busqueda por fecha", None))
         self.pushButtonBuscarFecha.setText(QCoreApplication.translate("WBuscador", u"Buscar", None))
+        self.dateEdit.setDisplayFormat(QCoreApplication.translate("WBuscador", u"dd/MM/yyyy", None))
         self.pushButton_Ver_Nota.setText(QCoreApplication.translate("WBuscador", u"Ver nota", None))
         self.pushButton_Informe_Etiqueta_2.setText(QCoreApplication.translate("WBuscador", u"Informe etiqueta", None))
         self.pushButton_Notas_Destacadas_2.setText(QCoreApplication.translate("WBuscador", u"Notas destacadas", None))

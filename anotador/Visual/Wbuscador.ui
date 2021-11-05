@@ -280,6 +280,12 @@ selection-background-color: rgb(255, 170, 255);</string>
                          <day>2</day>
                         </datetime>
                        </property>
+                       <property name="currentSection">
+                        <enum>QDateTimeEdit::DaySection</enum>
+                       </property>
+                       <property name="displayFormat">
+                        <string>dd/MM/yyyy</string>
+                       </property>
                        <property name="calendarPopup">
                         <bool>true</bool>
                        </property>
